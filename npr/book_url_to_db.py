@@ -4,11 +4,12 @@ python book_url_to_db.py <url>
 the text of the file is saved to mongodb npr.books
 '''
 import re
-import requests
 import sys
 
+import requests
+
 from settings import Settings
-from dbmgr import DbClient
+from utils.dbmgr import DbClient
 
 
 class Saver(object):
@@ -34,6 +35,13 @@ class Saver(object):
         return author, title
 
     def run(self, url):
+        '''
+        Get a content of a url (usually proj. guttenberg)
+        Writes the content to tha db
+        like so: dict(author=author, title=title, content=content)
+        :param url: the full url (utf-8 or similar)
+        :return: None
+        '''
         print 'collecting %s' % url
         status_code, content = self._get(url)
         if status_code != 200:

@@ -1,7 +1,7 @@
 '''
 Utils for npr project
 '''
-from settings import Settings
+from stuff.npr.settings import Settings
 from pymongo import MongoClient
 
 
