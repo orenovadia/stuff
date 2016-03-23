@@ -1,3 +1,2 @@
 # stuff
-euler tools
-web tools
+just stuff

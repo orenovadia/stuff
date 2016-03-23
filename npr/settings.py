@@ -44,4 +44,3 @@ class Settings(object):
 
 
 Settings.init()
-print Settings.db
