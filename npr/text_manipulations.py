@@ -5,8 +5,9 @@ from settings import Settings
 def main():
     c = DbClient()
     col = c.get_book_collection(Settings)
-    book = col.find_one()
-    book.keys()
+    book = col.find_one({"title":"Ulysses"})
+    print book.keys()
+    print book['title']
     content = book["content"]
     #content = content[8000:10000]
     allwords_stemmed= utils.tokenize_and_setem(content)
