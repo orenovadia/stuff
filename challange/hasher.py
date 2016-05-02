@@ -1,25 +1,25 @@
 from compress import _iter_words
-
+import math
 
 class Compressor(object):
     def __init__(self):
-        self.m = 10240000
-        self.max_bytes = 18  # approx
-        a = 10**self.max_bytes
-        self.k = 5
-        self.mod = self.m
-        self.max_hash = 10 ** 19
+        self.n = 66000
+        self.m = 400*8000#self.n * 8
+
+        self.k = 4#int(0.7*self.m/self.n)/3
+        self.divisor = 10#int(math.log(self.m, self.k))
+        print 'm=',self.m, 'k=',self.k, 'divisor=',self.divisor
 
         self.buffer = bytearray(self.m)
 
     def _modulus(self, number, modulus):
-        return number // 10, number % modulus
+        return number // self.divisor, number % modulus
 
     def my_hashes(self, obj):
         h = abs(hash(obj))
         l = []
         for i in range(self.k):
-            h, remainder = self._modulus(h, self.mod)
+            h, remainder = self._modulus(h, self.m)
             l.append(remainder)
         return l
 
@@ -36,7 +36,7 @@ class Compressor(object):
         print 'buffer length %sbits buffer filled %s ratio %s' % (
             len(self.buffer), s, 1.0 * s / len(self.buffer)
         )
-        print 'buffer is  %s KB' % (len(self.buffer) / 8)
+        print 'buffer is  %s KB' % (len(self.buffer) / 8000)
 
     def word_in_dictionary(self, word):
         return all(self.buffer[i] == 1 for i in self.my_hashes(word))
@@ -61,7 +61,7 @@ class Reader(object):
             if c.word_in_dictionary(word):
                 count_miss += 1
             count_all += 1
-        print "Total trail %s, false positives: %s, ratio: %s" % (
+        print "Total tests %s, false positives: %s, ratio: %s" % (
             count_all, count_miss, 1.0 * count_miss / count_all
         )
 
