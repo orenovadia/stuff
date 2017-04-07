@@ -1,0 +1,14 @@
+/usr/local/bin/python /Users/orenovad/sw/challenge_word_classifier/hasher.py
+buffer length 10240000bits buffer filled 2681805 ratio 0.261895019531
+buffer is  1280000 KB
+all true positives:  True
+Total trail 5297, false positives: 93, ratio: 0.0175571077969
+
+m= 3200000 k= 4 divisor= 10
+buffer length 3200000bits buffer filled 1727964 ratio 0.53998875
+buffer is  400 KB
+all true positives:  True
+Total tests 5297, false positives: 672, ratio: 0.12686426279
+
+
+Process finished with exit code 0
