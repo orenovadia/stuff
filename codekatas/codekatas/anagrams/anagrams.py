@@ -17,14 +17,11 @@ def anagrams(word_iterator):
     return canonic_to_anagrams
 
 
-def show_highest(canonic_to_anagrams):
-    return max(canonic_to_anagrams.itervalues(), key=len)
-
-
 def statistics(canonic_to_anagrams):
+    highest = max(canonic_to_anagrams.itervalues(), key=len)
+    print 'Biggest Group #{} : {}'.format(len(highest), ', '.join(sorted(highest)))
+
     c = Counter(imap(len, canonic_to_anagrams.itervalues()))
-    highest = show_highest(canonic_to_anagrams)
-    print 'Biggest Group #{} : {}'.format(len(highest), highest)
     pprint([('Anagrams', '# groups')] + c.most_common(7))
     top_n_longest_groups = sorted(c.keys(), reverse=True)[:len(c) / 4]
     pprint([('Anagrams', '# groups')] + [(k, c[k]) for k in top_n_longest_groups])
