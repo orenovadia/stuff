@@ -1,9 +1,8 @@
 from abc import ABCMeta
 from collections import defaultdict
-from itertools import imap
 
-from stuff.codekatas.codekatas.anagrams.anagram_utils import wordlist_open, statistics
-from stuff.codekatas.codekatas.utils import timer
+from codekatas.codekatas.anagrams.anagram_utils import wordlist_open, statistics
+from codekatas.codekatas.utils import timer
 
 
 class Canonicalizer(object):
@@ -11,7 +10,7 @@ class Canonicalizer(object):
 
     @staticmethod
     def canonicalize(word):
-        pass
+        raise NotImplementedError()
 
 
 class SortingCanonicalizer(Canonicalizer):
@@ -49,7 +48,7 @@ class Anagrams(object):
     def canonic_to_anagrams(self, word_iterator):
         canonic_to_anagrams = defaultdict(set)
         identity = self.canonicalizer.canonicalize
-        for word in imap(self.normalizer.normalize, word_iterator):
+        for word in map(self.normalizer.normalize, word_iterator):
             canonic_to_anagrams[identity(word)].add(word)
         return canonic_to_anagrams
 
@@ -63,5 +62,5 @@ if __name__ == '__main__':
         t.inform(canonicalizer_cls.__name__)
 
     for name, cta in statisticsl:
-        print 'Statistics for {}'.format(name)
+        print('Statistics for {}'.format(name))
         statistics(cta)

@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from stuff.codekatas.codekatas.anagrams.anagrams import anagrams
+from codekatas.codekatas.anagrams.anagrams import anagrams
 
 
 class AnagramsTest(TestCase):

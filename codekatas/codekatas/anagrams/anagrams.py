@@ -1,9 +1,8 @@
 from collections import defaultdict
-from itertools import imap
 from os.path import join, split, dirname
 
-from stuff.codekatas.codekatas.anagrams.anagram_utils import statistics
-from stuff.codekatas.codekatas.utils import timer
+from codekatas.codekatas.anagrams.anagram_utils import statistics
+from codekatas.codekatas.utils import timer
 
 
 def _anagram_identity(s):
@@ -12,7 +11,7 @@ def _anagram_identity(s):
 
 def anagrams(word_iterator):
     canonic_to_anagrams = defaultdict(set)
-    for word in imap(str.strip, word_iterator):
+    for word in map(str.strip, word_iterator):
         canonic_to_anagrams[_anagram_identity(word)].add(word)
     return canonic_to_anagrams
 

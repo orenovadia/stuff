@@ -16,7 +16,7 @@ class timer(object):
         self.elapsed = self._ended - self._started
 
     def inform(self, of_what=''):
-        print 'Timer %s: %.2f [ms]' % (of_what, self.elapsed * 1000)
+        print('Timer %s: %.2f [ms]' % (of_what, self.elapsed * 1000))
 
     def __enter__(self):
         self.start()
